@@ -1,0 +1,56 @@
+<h3 class="accent mt-3 ms-3">Employees</h3>
+
+<div class="text-end mt-3 me-3">
+    <button mat-raised-button color="accent" (click)="openDialog()"><mat-icon>person_add</mat-icon> Add User</button>
+</div>
+
+   
+<div class="container-fluid mt-3">
+    <div class="row">
+
+        <div *ngIf="isLoading; else loading" class="" style="text-align: -webkit-center;">
+            <mat-spinner></mat-spinner>
+        </div>
+       <ng-template #loading>
+        <div class="col-md-6 col-lg-4 col-sm-12 mb-4" *ngFor="let user of userData | async">
+            
+            <mat-card style="border: solid" class="primary">
+                <mat-card-header >
+                    <mat-card-title class="fw-bold">{{user.name}}</mat-card-title>
+                    <mat-card-subtitle>{{user.empID}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  
+                    <a class="accent" href="mailto:{{user.email}}" style="text-decoration: none;">{{user.email}}</a><br>
+                    <a class="accent" href="tel:+{{user.phone}}" style="text-decoration: none;">{{user.phone}}</a>
+                    <p>{{user.designation}}</p>
+                </mat-card-content>
+                <mat-card-actions class="mt-2 primary" style="text-align: right;display: block;border-top: solid;">
+                    
+                    <button mat-fab extended color="accent" style="scale: 0.8" (click)="openEditPopup(user.id)">
+                        <mat-icon>edit</mat-icon>
+                        Edit
+                    </button>
+                    <button mat-fab extended color="warn"  style="scale: 0.8" (click)="openDeleteDialog(deleteDialog, user.id)">
+                        <mat-icon>delete_forever</mat-icon>
+                        Delete
+                    </button>
+               
+                </mat-card-actions>
+            </mat-card>
+
+            <ng-template #deleteDialog>
+                <h2 matDialogTitle>Delete User</h2>
+                <p matDialogContent><em>Are you sure you want to delete this user - {{user.name}} ?</em></p>
+                <mat-dialog-actions align="end">
+                  <button mat-button matDialogClose color="warn" (click)="deleteEmployee(user.id)">Delete</button>
+                  <button mat-button matDialogClose>Cancel</button>
+                </mat-dialog-actions>
+              </ng-template>
+            
+        </div>
+    </ng-template>
+
+    </div>
+</div>
+

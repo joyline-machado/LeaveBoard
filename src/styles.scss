@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Signika Negative, "Helvetica Neue", sans-serif !important;
+}
+
+.active {
+    background-color: #e1bee7;
+}
+
+.primary {
+    color: #00796b;
+}
+
+.accent {
+    color: #0097a7
+}
+
+.warn {
+    color: #f44336;
+}
+
+// Background
+
+
+.background-primary-light {
+    background-color: #e0f2f1
+}
+
+.background-accent {
+    background-color: #b2dfdb;
+}
+
+.background-accent-light {
+    background-color: #e0f7fa;
+}
+
+// toolbar
+.toolbar {
+    // border-radius: 30px;
+    border: 5px double #0097a7;
+}

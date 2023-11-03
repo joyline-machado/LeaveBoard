@@ -1,0 +1,13 @@
+.holdayImage {
+    height: 260px !important;
+  
+    @media screen and (min-width: 768px) {
+        height: 200px !important;
+    }
+  
+    @media screen and (min-width: 1024px) {
+        height: 230px !important;
+    }
+  
+}
+  

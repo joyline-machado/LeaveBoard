@@ -1,0 +1,51 @@
+<!-- <mat-grid-list cols="2" >
+  <mat-grid-tile>
+    <h2 color="accent" cols="1" class="">Upcoming Holidays</h2>
+        <mat-grid-list *ngFor="let holidays of newHolidaysData | async">
+          
+            <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>{{ holidays.holidayOccasion }}</mat-card-title>
+                  <mat-card-subtitle>{{ holidays.holidayDate.toDate() | date: 'fullDate' }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{ holidays.holidayImage }}">
+               
+               
+              </mat-card>
+
+             
+        </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-leave-request></app-leave-request>
+  </mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-4 background-accent-light">
+      <div class="row justify-content-center">
+        <h3  class="accent mt-3 text-center">Holidays</h3>
+        <div class="col-md-11 col-sm-12 mb-4" *ngFor="let holidays of newHolidaysData | async">
+          
+            <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-title>{{ holidays.holidayOccasion }}</mat-card-title>
+                  <mat-card-subtitle>{{ holidays.holidayDate.toDate() | date: 'fullDate' }}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{ holidays.holidayImage }}">
+               
+               
+              </mat-card>
+
+             
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-8 col-sm-12">
+      <app-leave-request></app-leave-request>
+    </div>
+  </div>
+    
+</div>

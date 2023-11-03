@@ -1,0 +1,29 @@
+.background {
+    background-color: #cad8f9;
+    height: 100vh;
+
+    .container{
+        height: 100vh;
+
+        .title{
+            font-size: 35px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            
+        }
+
+        .form-background{
+            background-color: #ffffff;
+            height: 350px;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 26px 0 rgba(0, 0, 0, 0.14);
+        }
+    }
+}
+.login-image{
+    width: 100%;
+}
+mat-form-field{
+    width: 100%;
+}

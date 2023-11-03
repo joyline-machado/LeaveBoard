@@ -1,0 +1,69 @@
+<h1 mat-dialog-title *ngIf="!holiday">Add Holiday</h1>
+<h1 mat-dialog-title *ngIf="holiday">Edit Holiday</h1>
+<form [formGroup]="holidayForm" (ngSubmit)="holiday ? editHolidays() : addHoliday(holidayForm)">
+    <div mat-dialog-content>
+
+        <div class="row mt-1">
+            <div *ngIf="isLoading && holiday" class="" style="text-align: -webkit-center;">
+                <mat-spinner></mat-spinner>
+              </div>
+
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Holiday Ocassion</mat-label>
+                    <input matInput type="text" id="holidayOccasion" name="holidayOccasion" formControlName="holidayOccasion">
+                    <mat-icon matSuffix>event_note</mat-icon>
+                    <mat-error *ngIf="holidayForm.get('holidayOccasion')?.hasError('required') && submitted">
+                        This field is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="holidayForm.get('holidayOccasion')?.hasError('minlength') && submitted">
+                        Please enter at least <strong>3 characters</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Image Link</mat-label>
+                    <input matInput type="text" id="holidayImage" name="holidayImage" formControlName="holidayImage">
+                    <mat-icon matSuffix>image</mat-icon>
+                    <mat-error *ngIf="holidayForm.get('holidayImage')?.hasError('required') && submitted">
+                        This field is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Select Date</mat-label>
+                    <input matInput [matDatepicker]="picker" id="holidayDate" name="holidayDate" formControlName="holidayDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="holidayForm.get('holidayDate')?.hasError('required') && submitted">
+                        This field is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <br>
+        </div>
+
+        <!-- <div class="col-12 mt-5">
+            
+            &nbsp;
+            <button type="btn" [routerLink]="" (click)="onCancel()" class="btn btn-danger">Cancel</button>
+        </div> -->
+
+    </div>
+
+    <div mat-dialog-actions class="ms-3">
+        <button mat-raised-button color="accent" type="submit" *ngIf="!holiday" >
+            <mat-icon>date_range</mat-icon> 
+            Add Holiday
+        </button>
+        <button mat-raised-button color="accent" type="submit" *ngIf="holiday">
+            <mat-icon>date_range</mat-icon> 
+            Edit Holiday
+        </button>
+        <button mat-dialog-close mat-raised-button color="warn"> <mat-icon>close</mat-icon> Cancel</button>
+    </div>
+</form>

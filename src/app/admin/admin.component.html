@@ -1,0 +1,86 @@
+<mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button (click)="opened=!opened">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="title">LeaveBoard</span>
+
+    <span class="example-spacer"></span>
+    <button mat-flat-button extended [matMenuTriggerFor]="menu" color="primary" >
+        <mat-icon>account_box</mat-icon>Admin
+    </button>
+    <!-- <span class="text-end">Admin</span> -->
+    <mat-menu #menu="matMenu">
+      <!-- <button mat-menu-item >
+        <mat-icon>account_box</mat-icon>
+        <span>Admin</span>
+      </button> -->
+      <!-- <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button> -->
+      
+      <button mat-menu-item (click)="handleLogout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+    
+  
+    <!-- <button mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>share</mat-icon>
+    </button> -->
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side" class="primary-bg" >
+      <!-- <a>Home</a> -->
+      <mat-list role="list">
+        
+        <button mat-menu-item routerLink="dashboard" routerLinkActive="active" class="text-white">
+          <mat-icon class="text-white">dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="holidays" routerLinkActive="active" class="text-white">
+          <mat-icon class="text-white">event</mat-icon>
+          <span>Holidays</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="user" routerLinkActive="active" class="text-white">
+          <mat-icon class="text-white">supervisor_account</mat-icon>
+          <span>Employees</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item routerLink="leave-request" routerLinkActive="active" class="text-white">
+          <mat-icon class="text-white">description</mat-icon>
+          <span>Leave Request</span>
+        </button>
+        <mat-divider></mat-divider>
+
+        
+
+        <!-- <mat-list-item role="listitem"><a routerLink="dashboard" routerLinkActive="active" style="text-decoration: none;">Dashboard</a></mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem"><a routerLink="holidays" routerLinkActive="active" style="text-decoration: none;">Holidays</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem"><a routerLink="user" routerLinkActive="" style="text-decoration: none;">Users</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem"> <a routerLink="leave-request" routerLinkActive="" style="text-decoration: none;"> <mat-icon>description</mat-icon> Leave Request</a> </mat-list-item>
+        <mat-divider></mat-divider> -->
+
+       
+
+    </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+      
+      <!-- <button mat-button >Toggle</button> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>

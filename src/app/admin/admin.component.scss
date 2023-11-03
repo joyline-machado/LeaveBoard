@@ -1,0 +1,25 @@
+mat-sidenav-container {
+    height: calc(205vh - 115vh );
+}
+
+mat-sidenav {
+    width: 200px;
+    background-color: #eee;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.active {
+    background-color: #0097a7;
+    color: #ffffff;
+}
+.title{
+    font-size: 30px;
+    font-weight: bold;
+}
+.primary-bg {
+    background-color: #00796b;
+    color: #ffffff !important;
+    border:  5px double #0097a7;
+}

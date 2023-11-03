@@ -1,0 +1,138 @@
+<h1 mat-dialog-title *ngIf="!employee">Add Employee</h1>
+<h1 mat-dialog-title *ngIf="employee">Edit Employee</h1>
+<form [formGroup]="addEmployeeForm" (ngSubmit)="employee ? editEmployee() : addEmployee(addEmployeeForm)">
+    <div mat-dialog-content>
+
+        <div class="row">
+            <div *ngIf="isLoading && employee" class="" style="text-align: -webkit-center;">
+                <mat-spinner></mat-spinner>
+              </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" id="name" name="name" placeholder="Name" formControlName="name"
+                        required>
+                    <mat-icon matSuffix>person</mat-icon>
+
+                </mat-form-field>
+                <p class="error-message" *ngIf="addEmployeeForm.get('name')?.hasError('required') && submitted">
+                    This name field is required
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email ID</mat-label>
+                    <input matInput type="email" id="email" name="email" placeholder="Email Id" formControlName="email">
+                    <mat-icon matSuffix>email</mat-icon>
+
+                </mat-form-field>
+                <p class="error-message" *ngIf="addEmployeeForm.get('email')?.hasError('required') && submitted">
+                    This email field is required
+                </p>
+                <p class="error-message" *ngIf="addEmployeeForm.get('email')?.hasError('email') && submitted">
+                    Enter valid email
+                </p>
+
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+
+                    <input matInput [type]="hide ? 'password' : 'text'" id="password" name="password"
+                        formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-labcel]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+
+                </mat-form-field>
+                <p class="error-message" *ngIf="addEmployeeForm.get('password')?.hasError('required') && submitted">
+                    This password field is required
+                </p>
+                <div class="error-message" *ngIf="addEmployeeForm.get('password')?.hasError('minlength') && submitted">
+                    Password must contain at least 7 characters.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Employee ID</mat-label>
+                    <input matInput type="text" id="empID" name="empID" formControlName="empID">
+                    <mat-icon matSuffix>perm_identity</mat-icon>
+                </mat-form-field>
+                <p class="error-message" *ngIf="addEmployeeForm.get('empID')?.hasError('required') && submitted">
+                    This Employee ID field is required
+                </p>
+
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput type="text" id="phone" name="phone" formControlName="phone">
+                    <mat-icon matSuffix>phone</mat-icon>
+
+                </mat-form-field>
+                <p class="error-message" *ngIf="addEmployeeForm.get('phone')?.hasError('required') && submitted">
+                    This phone field is required
+                </p>
+                <p class="error-message" *ngIf="addEmployeeForm.get('phone')?.hasError('minlength') && submitted">
+                    Phone Number must be 10 characters.
+                </p>
+                <p class="error-message" *ngIf="addEmployeeForm.get('phone')?.hasError('pattern') && submitted">
+                    Enter valid phone number
+                </p>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker" id="dateOfBirth" name="dateOfBirth"
+                        formControlName="dateOfBirth">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+
+                </mat-form-field>
+
+                <p class="error-message pt-3"
+                    *ngIf="addEmployeeForm.get('dateOfBirth')?.hasError('futureDate') && submitted">
+                    Future date is not allowed
+                </p>
+                <p class="error-message pt-3"
+                    *ngIf="addEmployeeForm.get('dateOfBirth')?.hasError('required') && submitted">
+                    This date of birth field is required
+                </p>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Designation</mat-label>
+                    <input matInput type="text" id="designation" name="designation" formControlName="designation">
+                    <mat-icon matSuffix>work</mat-icon>
+
+                </mat-form-field>
+                <p class="error-message" *ngIf="addEmployeeForm.get('designation')?.hasError('required') && submitted">
+                    This date of birth field is required
+                </p>
+            </div>
+
+            <br>
+        </div>
+
+    </div>
+    
+    <mat-error *ngIf="message && submitted" class="text-center text-danger mt-3">{{message}}</mat-error>
+
+
+    <div mat-dialog-actions class="ms-3">
+        <button mat-raised-button color="accent" type="submit" *ngIf="!employee">
+            <mat-icon>person_add</mat-icon> Add Employee
+        </button>
+        <button mat-raised-button color="accent" *ngIf="employee" type="submit">
+            <mat-icon>person_add</mat-icon>Update Employee
+        </button>
+        <button mat-dialog-close mat-raised-button color="warn"> <mat-icon>close</mat-icon> Cancel</button>
+
+    </div>
+</form>

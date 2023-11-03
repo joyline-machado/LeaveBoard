@@ -1,0 +1,32 @@
+<div class="container-fluid mt-3">
+  <div class="row justify-content-center">
+
+    <div class="col-md-3 background-accent-light">
+      <h3 class="accent text-center mt-2">Holidays</h3>
+      <div class="col-md-12 col-sm-12 mb-4" *ngFor="let holidays of newHolidaysData | async">
+
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>{{ holidays.holidayOccasion }}</mat-card-title>
+            <mat-card-subtitle>{{ holidays.holidayDate.toDate() | date: 'fullDate' }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{ holidays.holidayImage }}" class="holidayImage">
+
+
+        </mat-card>
+
+
+      </div>
+    </div>
+
+    <div class="col-md-9">
+     
+        <app-leaves></app-leaves>
+      
+    </div>
+
+
+
+  </div>
+</div>
+

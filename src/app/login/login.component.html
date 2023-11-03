@@ -1,0 +1,59 @@
+<div class="background col-12">
+  <div class="container">
+      <div class="row " style="height: 90vh;">
+        <h1 class="text-center title primary pt-5" style="font-size: xxx-large;">LeaveBoard</h1>
+          <div class="col-md-6 justify-content-center">
+              
+              <img src="../../assets/1.png" alt="" class="login-image">
+          </div>
+          <div class="col-md-5 justify-content-center">
+              <div class="form-background">
+                  <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm)">
+
+                      <h2 class="mb-4 fw-bold accent">Sign In</h2>
+
+                      <mat-form-field appearance="outline">
+                          <mat-label>Email</mat-label>
+
+                          <input matInput placeholder="Email" type="email" style="background-color: transparent;" formControlName="email" name="email" id="email" class="">
+                          <mat-icon matSuffix>email</mat-icon>
+                          <mat-error *ngIf="loginForm.get('email')?.hasError('required') && submitted">
+                              Please enter the <strong>email</strong>
+                          </mat-error>
+                          <mat-error *ngIf="loginForm.get('email')?.hasError('email') && submitted">
+                              Please enter the <strong>valid email</strong>
+                          </mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                          <mat-label>Password</mat-label>
+
+                          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+                              name="password" id="password" placeholder="Password" class=""
+                              style="background-color: transparent;">
+                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                              [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                          <mat-error *ngIf="loginForm.get('password')?.hasError('required') && submitted">
+                              Please enter the <strong>password</strong>
+                          </mat-error>
+                          <mat-error *ngIf="loginForm.get('password')?.hasError('noSapaceAllowed') && submitted">
+                              No space allowed in password field
+                          </mat-error>
+
+                      </mat-form-field>
+
+
+                      <!-- <button mat-button>Login</button> -->
+                      <button mat-fab extended color="primary" style="width: 30%;"> Login </button>
+
+                      <mat-error *ngIf="message && submitted" class="text-center text-danger mt-3">{{message}}</mat-error>
+
+
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

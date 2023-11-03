@@ -1,0 +1,80 @@
+<h1 mat-dialog-title *ngIf="!leaveReq">Apply Leave</h1>
+<h1 mat-dialog-title *ngIf="leaveReq">Edit Leave Request</h1>
+<form [formGroup]="leaveForm" (ngSubmit)="leaveReq ? editLeave() : applyLeave(leaveForm)">
+    <div mat-dialog-content>
+
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <!-- <mat-form-field appearance="outline">
+                    <mat-label>Leave Type</mat-label>
+                    <input matInput type="text" id="leaveType" name="leaveType" formControlName="leaveType" placeholder="Leave Type" required>
+                    <mat-icon matSuffix>note_add</mat-icon>
+                </mat-form-field> -->
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Leave Type </mat-label>
+                    <mat-select formControlName="leaveType">
+                      <mat-option>Clear</mat-option>
+                      <mat-option value="Sick Leave">Sick Leave</mat-option>
+                      <mat-option value="Cassual Leave">Cassual Leave</mat-option>
+                    </mat-select>
+                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    <mat-error *ngIf="leaveForm.get('leaveType')?.hasError('required') && submitted">You must make a selection</mat-error>
+                    
+                  </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Leave Reason </mat-label>
+                    <input matInput type="text" id="leaveReason" name="leaveReason" formControlName="leaveReason" placeholder="Reason for leave">
+                    <mat-icon matSuffix>insert_drive_file</mat-icon>
+                    <mat-error *ngIf="leaveForm.get('leaveReason')?.hasError('required') && submitted">Reason is required</mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Leave Date</mat-label>
+                    <input matInput [matDatepicker]="picker" id="leaveFrom" name="leaveFrom" formControlName="leaveFrom" required>
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="leaveForm.get('leaveFrom')?.hasError('required') && submitted">Date is required</mat-error>
+                </mat-form-field>
+            </div> -->
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter a leave date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input matStartDate placeholder="From date" id="leaveFrom" name="leaveFrom" formControlName="leaveFrom">
+                      <input matEndDate placeholder="To date"  id="leaveTo" name="leaveTo" formControlName="leaveTo">
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                    <mat-error *ngIf="leaveForm.get('leaveFrom')?.hasError('required') && submitted">From Date is required</mat-error>
+                    <mat-error *ngIf="leaveForm.get('leaveTo')?.hasError('required') && submitted">To Date is required</mat-error>
+                  </mat-form-field>
+                  
+            </div>
+
+            <br>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div mat-dialog-actions class="ms-3">
+        <button mat-raised-button color="accent" type="submit" *ngIf="!leaveReq">
+            <mat-icon>note_add</mat-icon> Apply Leave
+        </button>
+        <button mat-raised-button color="accent" type="submit" *ngIf="leaveReq">
+            <mat-icon>note_add</mat-icon> Edit Leave
+        </button>
+        <button mat-dialog-close mat-raised-button color="warn"> <mat-icon>close</mat-icon> Cancel</button>
+    </div>
+</form>
